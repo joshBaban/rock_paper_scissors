@@ -1,20 +1,23 @@
 import 'dart:io';
 import 'dart:math';
 
-
+/// Get a player move via keyboard input
+/// If the player does not enter a valid move
+/// return "Quit" so that the main game loop
+/// knows to end the game
 String getPlayerMove() {
   print("Would you like (R)ock, (P)aper, or (S)cissors?");
   String selection = stdin.readLineSync().toUpperCase();
   
   switch (selection) {
     case "R":
-      return "Rock";
+      return "⛰️";
       break;
     case "P":
-      return "Paper";
+      return "📃";
       break;
     case "S":
-      return "Scissors";
+      return "✂️";
       break;
     default:  //if anything but R, P, or S
       return "Quit";
@@ -22,35 +25,37 @@ String getPlayerMove() {
   }
 }
 
-
+/// Return a random move in the form of a string of either
+/// "Rock", "Paper", or "Scissors"
 String getComputerMove() {
   Random rand = new Random();
   int move = rand.nextInt(3);  //random int from 0 to 2
   
   switch (move) {
     case 0:
-      return "Rock";
+      return "⛰️";
       break;
     case 1:
-      return "Paper";
+      return "📃";
       break;
     case 2:
-      return "Scissors";
+      return "✂️";
       break;
     default:
       break;
   }
 }
 
-
+/// Determine if the player or the computer won
+/// by comparing [playerMove] to [computerMove]
 String whoWon(String playerMove, String computerMove) {
   if (playerMove == computerMove) {  //if the same, it's a tie
     return "Tie";
-  } else if (playerMove == "Rock" && computerMove == "Scissors") {
+  } else if (playerMove == "⛰️" && computerMove == "✂️") {
     return "You Win!";
-  } else if (playerMove == "Scissors" && computerMove == "Paper") {
+  } else if (playerMove == "✂️" && computerMove == "📃") {
     return "You Win!";
-  } else if (playerMove == "Paper" && computerMove == "Rock") {
+  } else if (playerMove == "📃" && computerMove == "⛰️") {
     return "You Win!";
   } else {  //if it's not a tie and you didn't win, computer won
     return "Computer Wins!";
